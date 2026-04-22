@@ -11,8 +11,8 @@
   --shadow: 0 30px 70px rgba(0, 0, 0, 0.45);
   --radius: 18px;
 
-  /* Tamaño base responsive */
-  --book-width: min(88vw, 560px);
+  /* En desktop esto representa UNA página */
+  --book-width: clamp(300px, 36vw, 540px);
   --book-height: calc(var(--book-width) * 1.3333);
 }
 
@@ -51,7 +51,7 @@ button {
 }
 
 .page-shell {
-  max-width: 1380px;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 28px 20px 40px;
 }
@@ -116,20 +116,21 @@ button {
 }
 
 .viewer-wrap {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  display: flex;
   align-items: center;
+  justify-content: center;
   gap: 18px;
 }
 
 .book-scene {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: auto;
-  padding: 20px 0;
-  perspective: 2600px;
-  overflow: hidden;
+  width: min(100%, calc(var(--book-width) * 2 + 40px));
+  min-height: calc(var(--book-height) + 70px);
+  perspective: 3000px;
+  overflow: visible;
   touch-action: pan-y;
 }
 
@@ -147,6 +148,7 @@ button {
   position: absolute;
   inset: 0;
   perspective: 2600px;
+  transform-style: preserve-3d;
 }
 
 .front,
@@ -155,7 +157,7 @@ button {
   inset: 0;
   width: 100%;
   height: 100%;
-  transform-origin: left;
+  transform-origin: left center;
   transition:
     transform 0.85s cubic-bezier(0.65, 0.05, 0.36, 1),
     box-shadow 0.85s ease;
@@ -169,6 +171,7 @@ button {
 
 .back {
   z-index: 0;
+  backface-visibility: hidden;
 }
 
 .front-content,
@@ -577,7 +580,7 @@ blockquote {
   cursor: pointer;
 }
 
-/* ----------- TABLET ----------- */
+/* TABLET */
 @media (max-width: 980px) {
   :root {
     --book-width: min(86vw, 500px);
@@ -591,30 +594,23 @@ blockquote {
   }
 
   .viewer-wrap {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     gap: 12px;
   }
 
+  .book-scene {
+    width: min(100%, var(--book-width));
+    min-height: auto;
+    padding: 14px 0 8px;
+  }
+
   .nav-btn {
-    justify-self: center;
     width: 52px;
     height: 52px;
   }
-
-  #prevBtn {
-    order: 2;
-  }
-
-  .book-scene {
-    order: 1;
-  }
-
-  #nextBtn {
-    order: 3;
-  }
 }
 
-/* ----------- MOBILE ----------- */
+/* MOBILE */
 @media (max-width: 768px) {
   :root {
     --book-width: min(94vw, 420px);
@@ -646,10 +642,6 @@ blockquote {
   .tips span {
     font-size: 0.8rem;
     padding: 8px 12px;
-  }
-
-  .book-scene {
-    padding: 10px 0 6px;
   }
 
   .page {
@@ -727,7 +719,7 @@ blockquote {
   }
 }
 
-/* ----------- SMALL MOBILE ----------- */
+/* SMALL MOBILE */
 @media (max-width: 480px) {
   :root {
     --book-width: 96vw;
@@ -800,33 +792,6 @@ blockquote {
   }
 }
 
-/* ----------- VERY SMALL ----------- */
-@media (max-width: 360px) {
-  :root {
-    --book-width: 95vw;
-    --book-height: calc(var(--book-width) * 1.3333);
-  }
-
-  .cover-content,
-  .back-cover-copy,
-  .title-block,
-  .blurb-block {
-    padding: 16px;
-  }
-
-  .cover-content h2 {
-    font-size: 1.8rem;
-  }
-
-  .cover-tagline,
-  .title-copy,
-  .blurb-block p,
-  blockquote {
-    font-size: 0.8rem;
-  }
-}
-
-/* Accesibilidad */
 @media (prefers-reduced-motion: reduce) {
   .book,
   .front,

@@ -18,7 +18,10 @@ const positionLabels = {
 const numOfSheets = sheets.length;
 let currentLocation = 1;
 
-/* -------- Estado inicial -------- */
+function isMobileView() {
+  return window.matchMedia("(max-width: 768px)").matches;
+}
+
 function applyInitialStackOrder() {
   sheets.forEach((sheet, index) => {
     sheet.style.zIndex = String(numOfSheets - index);
@@ -34,20 +37,20 @@ function updateButtons() {
   nextBtn.disabled = currentLocation === numOfSheets + 1;
 }
 
-function updateBookTransform() {
-  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+function getDesktopOpenShift() {
+  return Math.round(book.getBoundingClientRect().width * 0.5);
+}
 
-  if (isMobile) {
-    book.style.transform = "translateX(0)";
+function updateBookTransform() {
+  if (isMobileView()) {
+    book.style.transform = "translateX(0px)";
     return;
   }
 
-  if (currentLocation === 1) {
-    book.style.transform = "translateX(0%)";
-  } else if (currentLocation === numOfSheets + 1) {
-    book.style.transform = "translateX(0%)";
+  if (currentLocation === 1 || currentLocation === numOfSheets + 1) {
+    book.style.transform = "translateX(0px)";
   } else {
-    book.style.transform = "translateX(12%)";
+    book.style.transform = `translateX(${getDesktopOpenShift()}px)`;
   }
 }
 
@@ -61,7 +64,6 @@ function unflipSheet(sheet) {
   sheet.style.zIndex = String(numOfSheets - currentLocation + 2);
 }
 
-/* -------- Navegación -------- */
 function goNext() {
   if (currentLocation > numOfSheets) return;
 
@@ -99,12 +101,10 @@ function restartBook() {
   updateButtons();
 }
 
-/* -------- Eventos click -------- */
 prevBtn.addEventListener("click", goPrev);
 nextBtn.addEventListener("click", goNext);
 restartBtn.addEventListener("click", restartBook);
 
-/* -------- Teclado -------- */
 document.addEventListener("keydown", (event) => {
   if (event.key === "ArrowRight") {
     goNext();
@@ -119,7 +119,7 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-/* -------- Gestos touch para celular -------- */
+/* Swipe en celular */
 let touchStartX = 0;
 let touchEndX = 0;
 const swipeThreshold = 50;
@@ -130,9 +130,9 @@ function handleSwipeGesture() {
   if (Math.abs(diff) < swipeThreshold) return;
 
   if (diff < 0) {
-    goNext(); // swipe izquierda
+    goNext();
   } else {
-    goPrev(); // swipe derecha
+    goPrev();
   }
 }
 
@@ -155,10 +155,8 @@ if (bookScene) {
   );
 }
 
-/* -------- Resize -------- */
 window.addEventListener("resize", updateBookTransform);
 
-/* -------- Init -------- */
 applyInitialStackOrder();
 updateBookTransform();
 updateIndicator();
