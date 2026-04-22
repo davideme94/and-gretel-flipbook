@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>...And Gretel — Flipbook</title>
+    <meta
+      name="description"
+      content="Interactive flipbook for ...And Gretel with fairy-tale inspired cover, back cover, and page-turn animation."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="intro-bar">
+        <div>
+          <p class="eyebrow">Interactive fairy-tale presentation</p>
+          <h1>...And Gretel</h1>
+          <p class="subtitle">
+            A dark flipbook inspired by classic gilded covers and storybook frames.
+          </p>
+        </div>
+        <div class="tips">
+          <span>◀ ▶ Arrow keys</span>
+          <span>R Restart</span>
+        </div>
+      </header>
+
+      <main class="viewer-wrap">
+        <button id="prevBtn" class="nav-btn" aria-label="Previous page">&#10094;</button>
+
+        <section class="book-scene" aria-label="Flipbook viewer">
+          <div id="book" class="book">
+            <div class="sheet" id="sheet-1">
+              <div class="front">
+                <div class="front-content">
+                  <div class="page cover-page cover-front">
+                    <div class="cover-ornaments">
+                      <span class="sparkle sparkle-1">✦</span>
+                      <span class="sparkle sparkle-2">✦</span>
+                      <span class="sparkle sparkle-3">✦</span>
+                      <span class="sparkle sparkle-4">✦</span>
+                    </div>
+                    <div class="cover-frame outer-frame"></div>
+                    <div class="cover-frame inner-frame"></div>
+                    <div class="corner corner-tl"></div>
+                    <div class="corner corner-tr"></div>
+                    <div class="corner corner-bl"></div>
+                    <div class="corner corner-br"></div>
+                    <div class="cover-content">
+                      <p class="cover-kicker">A dark fairy tale</p>
+                      <h2>...And Gretel</h2>
+                      <p class="cover-tagline">Memory, silence, and the shape of what remains.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="back">
+                <div class="back-content">
+                  <div class="page title-page parchment-page">
+                    <div class="parchment-frame"></div>
+                    <div class="title-block">
+                      <p class="mini-label">Opening page</p>
+                      <h2>...And Gretel</h2>
+                      <p class="title-copy">
+                        Once upon a time, 30,000 people were killed by an abominable and powerful witch.
+                      </p>
+                      <div class="divider"></div>
+                      <p class="title-copy small">
+                        A fairy-tale retelling shaped by memory, disappearance, and the refusal to look away.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="sheet" id="sheet-2">
+              <div class="front">
+                <div class="front-content">
+                  <div class="page image-page">
+                    <img src="assets/pages/page-1.png" alt="Page 1 of ...And Gretel" />
+                  </div>
+                </div>
+              </div>
+              <div class="back">
+                <div class="back-content">
+                  <div class="page image-page">
+                    <img src="assets/pages/page-2.png" alt="Page 2 of ...And Gretel" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="sheet" id="sheet-3">
+              <div class="front">
+                <div class="front-content">
+                  <div class="page image-page">
+                    <img src="assets/pages/page-3.png" alt="Page 3 of ...And Gretel" />
+                  </div>
+                </div>
+              </div>
+              <div class="back">
+                <div class="back-content">
+                  <div class="page image-page">
+                    <img src="assets/pages/page-4.png" alt="Page 4 of ...And Gretel" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="sheet" id="sheet-4">
+              <div class="front">
+                <div class="front-content">
+                  <div class="page image-page">
+                    <img src="assets/pages/page-5.png" alt="Page 5 of ...And Gretel" />
+                  </div>
+                </div>
+              </div>
+              <div class="back">
+                <div class="back-content">
+                  <div class="page image-page">
+                    <img src="assets/pages/page-6.png" alt="Page 6 of ...And Gretel" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="sheet" id="sheet-5">
+              <div class="front">
+                <div class="front-content">
+                  <div class="page back-matter parchment-page">
+                    <div class="parchment-frame"></div>
+                    <div class="blurb-block">
+                      <p class="mini-label">Back matter</p>
+                      <h2>About this edition</h2>
+                      <p>
+                        This flipbook layout was designed to feel like a gilded fairy-tale object: dark emerald tones,
+                        warm gold details, framed spreads, and a dramatic page-turn reveal.
+                      </p>
+                      <p>
+                        The story moves through loss, silence, and survival while reworking the language of fairy tales
+                        into something sharper and more historical.
+                      </p>
+                      <blockquote>
+                        “The world doesn’t change. You just learn to see it the way it is.”
+                      </blockquote>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="back">
+                <div class="back-content">
+                  <div class="page cover-page cover-back">
+                    <div class="cover-frame outer-frame"></div>
+                    <div class="cover-frame inner-frame"></div>
+                    <div class="corner corner-tl"></div>
+                    <div class="corner corner-tr"></div>
+                    <div class="corner corner-bl"></div>
+                    <div class="corner corner-br"></div>
+                    <div class="back-cover-copy">
+                      <p class="mini-label gold">Back cover</p>
+                      <p>
+                        A storybook shell for a tale that resists forgetting.
+                      </p>
+                      <div class="cover-divider"></div>
+                      <p class="small-back-copy">
+                        UINIVERSIDAD NACIONAL DE JOSE C PAZ
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <button id="nextBtn" class="nav-btn" aria-label="Next page">&#10095;</button>
+      </main>
+
+      <footer class="controls-bar">
+        <div class="status-pill">
+          <span class="status-label">View</span>
+          <strong id="pageIndicator">Front Cover</strong>
+        </div>
+        <div class="control-buttons">
+          <button id="restartBtn" class="control-btn">Restart</button>
+        </div>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
